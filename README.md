@@ -1,5 +1,4 @@
 ## AmnewziaWG Easy & List updated:
-
 • Add AdGuard DNS Home
 • Set DNS: 127.0.0.1#53
 
