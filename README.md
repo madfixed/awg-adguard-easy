@@ -1,5 +1,5 @@
 ## AmnewziaWG Easy 
-   ## DNS AdGuard Home
+   ## + AdGuard Home
 You have found the easiest way to install & manage WireGuard on any Linux host!
 
 <p align="center">
