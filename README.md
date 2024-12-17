@@ -1,6 +1,7 @@
 ## AmnewziaWG Easy & List updated:
 1. Add AdGuard DNS Home
 2. Set DNS: 127.0.0.1#53
+3. Access to Web UI panels is only possible via VPN
 
 You have found the easiest way to install & manage WireGuard on any Linux host!
 
