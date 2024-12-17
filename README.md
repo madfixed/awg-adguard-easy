@@ -1,4 +1,4 @@
-# AmnewziaWG Easy
+# AmnewziaWG + DNS AdGuard Home Easy
 
 You have found the easiest way to install & manage WireGuard on any Linux host!
 
@@ -8,7 +8,7 @@ You have found the easiest way to install & manage WireGuard on any Linux host!
 
 ## Features
 
-* All-in-one: AmneziaWG + Web UI.
+* All-in-one: AmneziaWG + AdGuard Home + Web UI.
 * Easy installation, simple to use.
 * List, create, edit, delete, enable & disable clients.
 * Show a client's QR code.
