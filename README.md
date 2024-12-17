@@ -1,6 +1,6 @@
 ## AmnewziaWG Easy & List updated:
-• Add AdGuard DNS Home
-• Set DNS: 127.0.0.1#53
+1. Add AdGuard DNS Home
+2. Set DNS: 127.0.0.1#53
 
 You have found the easiest way to install & manage WireGuard on any Linux host!
 
