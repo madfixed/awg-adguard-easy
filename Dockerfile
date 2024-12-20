@@ -1,6 +1,3 @@
-# Use AdGuard Home base image
-FROM adguard/adguardhome:latest AS adguard
-
 # Use Node.js 18 alpine image for building node modules
 FROM docker.io/library/node:18-alpine AS build_node_modules
 
@@ -28,16 +25,19 @@ COPY --from=build_node_modules /node_modules /node_modules
 COPY --from=build_node_modules /app/wgpw.sh /bin/wgpw
 RUN chmod +x /bin/wgpw
 
-# Install necessary Linux packages excluding AdGuard Home
+# Install necessary Linux packages including AdGuard Home
 RUN apk add --no-cache \
     dpkg \
     dumb-init \
     iptables \
     nodejs \
-    npm
+    npm \
+    curl \
+    tar
 
-# Copy AdGuard Home from the adguard stage
-COPY --from=adguard /opt/adguardhome /opt/adguardhome
+# Install AdGuard Home
+RUN curl -sSL https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz | tar -xz -C /opt && \
+    mv /opt/AdGuardHome /opt/adguardhome
 
 # Use iptables-legacy to avoid compatibility issues
 RUN update-alternatives --install /sbin/iptables iptables /sbin/iptables-legacy 10 --slave /sbin/iptables-restore iptables-restore /sbin/iptables-legacy-restore --slave /sbin/iptables-save iptables-save /sbin/iptables-legacy-save
@@ -50,6 +50,9 @@ ENV DNS_SERVER=127.0.0.1
 RUN mkdir -p /opt/adguardhome/conf && \
     echo "bind_host: 127.0.0.1" > /opt/adguardhome/conf/AdGuardHome.yaml && \
     echo "bind_port: 53" >> /opt/adguardhome/conf/AdGuardHome.yaml
+
+# Set the local DNS resolver to use AdGuard Home
+RUN echo "nameserver 127.0.0.1" > /etc/resolv.conf
 
 # Create the startup script and make it executable
 COPY start.sh /start.sh
